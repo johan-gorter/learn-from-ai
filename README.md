@@ -1,5 +1,7 @@
 # LearnFromAI
 
+__This project is completely written using AI. It is meant to be used for demonstration, not for production__
+
 LearnFromAI is a production-ready e-learning web application built using .NET Core 8, SQL database, Entity Framework, and Docker. The application includes user login functionality and is designed to be run using a devcontainer in Visual Studio Code.
 
 ## Project Structure
@@ -58,4 +60,4 @@ Contributions to the LearnFromAI project are welcome! If you find any issues or 
 
 ## License
 
-This project [unlicensed](LICENSE).
+This project is [unlicensed](LICENSE).
