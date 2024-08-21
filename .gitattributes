@@ -1,0 +1,6 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Exclude files from exporting
+.gitattributes export-ignore
+.gitignore export-ignore

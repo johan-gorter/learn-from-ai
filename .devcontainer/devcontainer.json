@@ -1,0 +1,12 @@
+{
+  "name": "LearnFromAI",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "shutdownAction": "stopCompose",
+  "features": {
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "7.4.2" // Specific version until permissions are fixed
+    }
+  }
+}
