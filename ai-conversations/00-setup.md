@@ -918,7 +918,7 @@ This `Dockerfile` uses a multi-stage build to optimize the final image size. It 
 
 
 ```yaml
-version: \'3.8\'
+version: '3.8'
 
 ### User
 before adding the code to git, let\'s create a README.md file so developers and AI have all the knowledge to further develop this project. Summarize the project structure and the technologies used. Also describe what commands can be used in the devcontainer for starting, stopping, upgrading the database, etc.
