@@ -190,7 +190,7 @@ Absolutely! Let\'s set up Docker Compose to run a SQL Server container within yo
 
 
 ```yaml
-version: \'3.8\'
+version: '3.8'
 
 
 services:
