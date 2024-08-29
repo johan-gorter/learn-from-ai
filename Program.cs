@@ -12,6 +12,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddAntiforgery(options => 
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.HeaderName = "X-CSRF-TOKEN";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,5 +39,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseAntiforgery();
 
 app.Run();
