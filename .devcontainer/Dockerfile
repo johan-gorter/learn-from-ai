@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0
 
-RUN dotnet tool install --global dotnet-ef
-
 # Install SQL Server command-line tools
 RUN apt-get update && apt-get install -y curl gnupg
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -34,3 +32,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Set the default user
 USER $USERNAME
+
+# Install dotnet-ef tool globally for the vscode user
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/home/$USERNAME/.dotnet/tools"
