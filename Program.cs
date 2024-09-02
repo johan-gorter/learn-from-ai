@@ -12,12 +12,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddAntiforgery(options => 
+builder.Services.AddAntiforgery(options =>
 {
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.Strict;
-    options.HeaderName = "X-CSRF-TOKEN";
+  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+  options.Cookie.HttpOnly = true;
+  options.Cookie.SameSite = SameSiteMode.Strict;
+  options.HeaderName = "X-CSRF-TOKEN";
 });
 
 var app = builder.Build();
@@ -25,9 +25,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+  app.UseExceptionHandler("/Error");
+  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+  app.UseHsts();
 }
 
 app.UseHttpsRedirection();
