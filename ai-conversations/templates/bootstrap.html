@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 101 - Exercise 1a</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .course-outline {
+            border-right: 1px solid #dee2e6;
+        }
+        @media (max-width: 767.98px) {
+            .course-outline {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <header>
+            <h1 class="mb-4">JavaScript 101</h1>
+        </header>
+
+        <main class="row">
+            <nav class="col-md-3 course-outline mb-4 mb-md-0">
+                <h2 class="h5">Course Outline</h2>
+                <ul class="list-unstyled">
+                    <li>
+                        <span>1. Introduction to Programming and JavaScript</span>
+                        <ul>
+                            <li><strong>✓ Write a program that displays your name</strong></li>
+                            <li>Modify the program to display a greeting with your name</li>
+                        </ul>
+                    </li>
+                    <li>2. Variables and Data Types</li>
+                    <li>3. Basic Operators and Expressions</li>
+                    <li>4. Conditional Statements (if/else)</li>
+                    <li>5. Functions</li>
+                </ul>
+            </nav>
+
+            <div class="col-md-9">
+                <section aria-labelledby="exercise-title">
+                    <h2 id="exercise-title" class="h5">Exercise 1a: Write a program that displays your name</h2>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p>Now that you've seen how to display "Hello, World!", let's personalize it! Your task is to write a JavaScript program that displays your name in the console.</p>
+                            <p>Use the <code>console.log()</code> function to output your name as a string (remember to use quotes around your name).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-labelledby="playground-title">
+                    <h3 id="playground-title" class="h6">Playground</h3>
+                    <textarea class="form-control mb-3" rows="5" placeholder="// Write your code here
+console.log("></textarea>
+                    <div class="btn-group mb-4" role="group" aria-label="Playground controls">
+                        <button type="button" class="btn btn-primary">Run</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#hintModal">Hint</button>
+                        <button type="button" class="btn btn-outline-secondary">Reset</button>
+                    </div>
+                </section>
+
+                <section aria-labelledby="output-title">
+                    <h3 id="output-title" class="h6">Console Output</h3>
+                    <div class="card bg-light">
+                        <pre class="card-body" id="console-output"></pre>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hint Modal -->
+    <div class="modal fade show" id="hintModal" tabindex="-1" aria-labelledby="hintModalLabel" aria-modal="true" role="dialog" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hintModalLabel">Hint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
+                    <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

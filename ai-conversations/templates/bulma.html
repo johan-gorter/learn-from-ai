@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 101 - Exercise 1a</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style>
+    .course-outline {
+      border-right: 1px solid #dbdbdb;
+    }
+
+    .exercise-content {
+      height: 100%;
+    }
+
+    .playground {
+      min-height: 100px;
+    }
+
+    .output {
+      min-height: 100px;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <strong>JavaScript 101</strong>
+      </a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-quarter course-outline">
+          <aside class="menu">
+            <p class="menu-label">Course Outline</p>
+            <ul class="menu-list">
+              <li>
+                <a class="is-active">Introduction to Programming and JavaScript</a>
+                <ul>
+                  <li><a class="is-active">Write a program that displays your name</a></li>
+                  <li><a>Modify the program to display a greeting with your name</a></li>
+                </ul>
+              </li>
+              <li><a>Variables and Data Types</a></li>
+              <li><a>Basic Operators and Expressions</a></li>
+              <li><a>Conditional Statements (if/else)</a></li>
+              <li><a>Functions</a></li>
+            </ul>
+          </aside>
+        </div>
+        <div class="column">
+          <div class="exercise-content">
+            <h1 class="title">Exercise 1a: Write a program that displays your name</h1>
+            <div class="content">
+              <p>Now that you've seen how to display "Hello, World!", let's personalize it! Your task is to write a
+                JavaScript program that displays your name in the console.</p>
+              <p>Use the <code>console.log()</code> function to output your name as a string (remember to use quotes
+                around your name).</p>
+            </div>
+            <div class="box">
+              <h2 class="subtitle">Playground</h2>
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea playground" rows="3"
+                    placeholder="// Write your code here">console.log(</textarea>
+                </div>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-primary" id="runButton">Run</button>
+                </div>
+                <div class="control">
+                  <button class="button is-info" id="hintButton">Hint</button>
+                </div>
+                <div class="control">
+                  <button class="button is-warning" id="resetButton">Reset</button>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <h2 class="subtitle">Output</h2>
+              <pre class="output" aria-live="polite"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal is-active" id="hintModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Hint</p>
+        <button class="delete" aria-label="close" id="closeHintButton"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
+        <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" id="closeHintButton2">Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const runButton = document.getElementById('runButton');
+      const hintButton = document.getElementById('hintButton');
+      const resetButton = document.getElementById('resetButton');
+      const closeHintButtons = document.querySelectorAll('#closeHintButton, #closeHintButton2');
+      const hintModal = document.getElementById('hintModal');
+      const playground = document.querySelector('.playground');
+      const output = document.querySelector('.output');
+
+      runButton.addEventListener('click', () => {
+        const code = playground.value;
+        try {
+          // This is a simple simulation of running the code
+          const result = eval(code);
+          output.textContent = result !== undefined ? result : 'Code executed successfully';
+        } catch (error) {
+          output.textContent = `Error: ${error.message}`;
+        }
+      });
+
+      hintButton.addEventListener('click', () => {
+        hintModal.classList.add('is-active');
+      });
+
+      closeHintButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          hintModal.classList.remove('is-active');
+        });
+      });
+
+      resetButton.addEventListener('click', () => {
+        playground.value = 'console.log(';
+        output.textContent = '';
+      });
+    });
+  </script>
+</body>
+
+</html>

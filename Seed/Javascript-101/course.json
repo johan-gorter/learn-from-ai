@@ -1,0 +1,74 @@
+{
+  "subjects": [
+    {
+      "key": "intro",
+      "headline": "Introduction to Programming and JavaScript",
+      "exercises": [
+        {
+          "key": "hello_name",
+          "headline": "Write a program that displays your name"
+        },
+        {
+          "key": "greeting",
+          "headline": "Modify the program to display a greeting with your name"
+        }
+      ]
+    },
+    {
+      "key": "variables",
+      "headline": "Variables and Data Types",
+      "exercises": [
+        {
+          "key": "personal_info",
+          "headline": "Create variables for personal information"
+        },
+        {
+          "key": "dog_years",
+          "headline": "Calculate and display age in dog years"
+        }
+      ]
+    },
+    {
+      "key": "operators",
+      "headline": "Basic Operators and Expressions",
+      "exercises": [
+        {
+          "key": "rectangle_area",
+          "headline": "Calculate the area of a rectangle"
+        },
+        {
+          "key": "even_odd",
+          "headline": "Determine if a number is even or odd"
+        }
+      ]
+    },
+    {
+      "key": "conditionals",
+      "headline": "Conditional Statements (if/else)",
+      "exercises": [
+        {
+          "key": "time_greeting",
+          "headline": "Write a program that gives a personalized greeting based on the time of day"
+        },
+        {
+          "key": "basic_calculator",
+          "headline": "Create a basic calculator that performs different operations based on user input"
+        }
+      ]
+    },
+    {
+      "key": "functions",
+      "headline": "Functions",
+      "exercises": [
+        {
+          "key": "celsius_to_fahrenheit",
+          "headline": "Write a function that converts Celsius to Fahrenheit"
+        },
+        {
+          "key": "random_greeting",
+          "headline": "Create a function that generates a random greeting"
+        }
+      ]
+    }
+  ]
+}

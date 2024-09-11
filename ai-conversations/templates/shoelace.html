@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 101 - Exercise 1a</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+  <style>
+    body {
+      font-family: var(--sl-font-sans);
+      color: var(--sl-color-neutral-900);
+      background-color: var(--sl-color-neutral-50);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .course-outline {
+      border-right: 1px solid var(--sl-color-neutral-200);
+    }
+
+    @media (max-width: 768px) {
+      .course-outline {
+        border-right: none;
+        border-bottom: 1px solid var(--sl-color-neutral-200);
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1><sl-card>JavaScript 101</sl-card></h1>
+    </header>
+
+    <main>
+      <sl-split-panel position="25">
+        <nav slot="start" class="course-outline">
+          <h2>Course Outline</h2>
+          <sl-tree>
+            <sl-tree-item expanded>
+              1. Introduction to Programming and JavaScript
+              <sl-tree-item selected>✓ Write a program that displays your name</sl-tree-item>
+              <sl-tree-item>Modify the program to display a greeting with your name</sl-tree-item>
+            </sl-tree-item>
+            <sl-tree-item>2. Variables and Data Types</sl-tree-item>
+            <sl-tree-item>3. Basic Operators and Expressions</sl-tree-item>
+            <sl-tree-item>4. Conditional Statements (if/else)</sl-tree-item>
+            <sl-tree-item>5. Functions</sl-tree-item>
+          </sl-tree>
+        </nav>
+
+        <div slot="end">
+          <section aria-labelledby="exercise-title">
+            <h2 id="exercise-title">Exercise 1a: Write a program that displays your name</h2>
+            <sl-card>
+              <p>Now that you've seen how to display "Hello, World!", let's personalize it! Your task is to write a
+                JavaScript program that displays your name in the console.</p>
+              <p>Use the <sl-badge variant="neutral">console.log()</sl-badge> function to output your name as a string
+                (remember to use quotes around your name).</p>
+            </sl-card>
+          </section>
+
+          <section aria-labelledby="playground-title">
+            <h3 id="playground-title">Playground</h3>
+            <sl-textarea rows="5" resize="auto" placeholder="// Write your code here
+console.log("></sl-textarea>
+            <sl-button-group>
+              <sl-button variant="primary">Run</sl-button>
+              <sl-button variant="success">Hint</sl-button>
+              <sl-button variant="neutral">Reset</sl-button>
+            </sl-button-group>
+          </section>
+
+          <section aria-labelledby="output-title">
+            <h3 id="output-title">Console Output</h3>
+            <sl-card>
+              <pre><code id="console-output"></code></pre>
+            </sl-card>
+          </section>
+        </div>
+      </sl-split-panel>
+    </main>
+  </div>
+
+  <sl-dialog label="Hint" open>
+    <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
+    <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
+    <sl-button slot="footer" variant="primary">Close</sl-button>
+  </sl-dialog>
+
+  <script>
+    // JavaScript for interactivity would go here
+    // (Run button, Hint button, Reset button functionality)
+  </script>
+</body>
+
+</html>
