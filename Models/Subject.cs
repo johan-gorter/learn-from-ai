@@ -11,5 +11,6 @@ namespace LearnFromAI.Models
     public List<Exercise> Exercises { get; set; }
     public int CourseId { get; set; }
     public Course Course { get; set; }
+    public string Content { get; set; }
   }
 }

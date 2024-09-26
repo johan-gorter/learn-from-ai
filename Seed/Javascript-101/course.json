@@ -65,8 +65,8 @@
           "headline": "Write a function that converts Celsius to Fahrenheit"
         },
         {
-          "key": "random_greeting",
-          "headline": "Create a function that generates a random greeting"
+          "key": "dice_roll_simulator",
+          "headline": "Create functions to simulate rolling dice"
         }
       ]
     }
