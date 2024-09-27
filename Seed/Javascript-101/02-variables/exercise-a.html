@@ -1,0 +1,50 @@
+<main>
+  <h2>Exercise 2a: Create variables for personal information</h2>
+  <p>In this exercise, you'll practice creating and using variables to store personal information. Create variables for your name, age, and favorite color, then display them using console.log().</p>
+  <p>Use appropriate variable names and data types for each piece of information.</p>
+</main>
+
+<code id="playground">
+// Create your variables here
+
+// Display the information using console.log()
+console.log("My name is:");
+console.log("I am years old");
+console.log("My favorite color is:");
+</code>
+
+<dialog id="hint">
+  <p>Remember to use let or const to declare your variables.</p>
+  <p>Use string data type for name and favorite color, and number for age.</p>
+  <p>You can use the + operator to combine strings and variables in console.log().</p>
+</dialog>
+
+<code id="solution">
+let name = "John Doe";
+let age = 30;
+let favoriteColor = "blue";
+
+console.log("My name is: " + name);
+console.log("I am " + age + " years old");
+console.log("My favorite color is: " + favoriteColor);
+</code>
+
+<code id="test-cases">
+// Test case 1: Check if variables are declared and have correct types
+expect(typeof name).toBe("string");
+expect(typeof age).toBe("number");
+expect(typeof favoriteColor).toBe("string");
+
+// Test case 2: Check if all variables have non-empty values
+expect(name.length).toBeGreaterThan(0);
+expect(age).toBeGreaterThan(0);
+expect(favoriteColor.length).toBeGreaterThan(0);
+
+// Test case 3: Check if console.log was called exactly three times
+expect(console.log.mock.calls.length).toBe(3);
+
+// Test case 4: Check if output contains the variable values
+expect(console.log.mock.calls[0][0]).toContain(name);
+expect(console.log.mock.calls[1][0]).toContain(age.toString());
+expect(console.log.mock.calls[2][0]).toContain(favoriteColor);
+</code>

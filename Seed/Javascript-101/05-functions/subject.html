@@ -1,0 +1,34 @@
+<main>
+  <h1>5. Functions</h1>
+
+  <p>Functions are one of the fundamental building blocks in JavaScript. A function is a reusable block of code that performs a specific task. Functions help us organize our code, make it more readable, and avoid repetition.</p>
+
+  <p>In JavaScript, we can define a function using the <code>function</code> keyword, followed by a name, a set of parentheses for parameters, and curly braces for the function body.</p>
+
+  <h2>Example: Area of a Circle</h2>
+  <p>Let's create a function that calculates the area of a circle given its radius:</p>
+
+  <pre><code>
+function calculateCircleArea(radius) {
+  const pi = 3.14159;
+  const area = pi * radius * radius;
+  return area;
+}
+
+// Using the function
+const circleRadius = 5;
+const circleArea = calculateCircleArea(circleRadius);
+console.log(`The area of a circle with radius ${circleRadius} is ${circleArea.toFixed(2)}`);
+  </code></pre>
+
+  <p>In this example:</p>
+  <ul>
+    <li><code>calculateCircleArea</code> is the function name.</li>
+    <li><code>radius</code> is a parameter that the function accepts.</li>
+    <li>The function calculates the area using the formula: π * r².</li>
+    <li>The <code>return</code> statement sends the result back when the function is called.</li>
+    <li>We then call the function with a radius of 5 and log the result.</li>
+  </ul>
+
+  <p>Functions allow us to write modular, reusable code. We can call this function multiple times with different radii, without having to rewrite the calculation logic each time.</p>
+</main>

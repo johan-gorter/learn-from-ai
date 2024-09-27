@@ -1,0 +1,77 @@
+<main>
+  <h2>Exercise 5b: Dice Roll Simulator</h2>
+  <p>Your task is to create two functions:</p>
+  <ol>
+    <li><code>rollDie()</code>: This function should simulate rolling a single 6-sided die and return a random number between 1 and 6.</li>
+    <li><code>rollTwoDice()</code>: This function should simulate rolling two dice by calling <code>rollDie()</code> twice and return the sum of the two rolls.</li>
+  </ol>
+  <p>After creating the functions, call <code>rollTwoDice()</code> multiple times and log the results.</p>
+  <p>Hint: To generate a random integer between 1 and 6, use the following formula:</p>
+  <pre><code>Math.floor(Math.random() * 6) + 1</code></pre>
+  <p>This combines <code>Math.random()</code> (which generates a random number between 0 and 1) with <code>Math.floor()</code> (which rounds down to the nearest integer).</p>
+</main>
+
+<code id="playground">
+// Write your functions here
+function rollDie() {
+  // Your code here
+}
+
+function rollTwoDice() {
+  // Your code here
+}
+
+// Test your functions
+console.log(rollTwoDice()); // Should output a number between 2 and 12
+console.log(rollTwoDice()); // Should output a number between 2 and 12
+console.log(rollTwoDice()); // Should output a number between 2 and 12
+</code>
+
+<dialog id="hint">
+  <p>For <code>rollDie()</code>, use the formula provided to generate a random number between 1 and 6.</p>
+  <p>In <code>rollTwoDice()</code>, call <code>rollDie()</code> twice and add the results together.</p>
+  <p>Remember to return the results from both functions!</p>
+</dialog>
+
+<code id="solution">
+function rollDie() {
+  return Math.floor(Math.random() * 6) + 1;
+}
+
+function rollTwoDice() {
+  return rollDie() + rollDie();
+}
+
+console.log(rollTwoDice()); // Outputs a number between 2 and 12
+console.log(rollTwoDice()); // Outputs a number between 2 and 12
+console.log(rollTwoDice()); // Outputs a number between 2 and 12
+</code>
+
+<code id="test-cases">
+// Test case 1: Check if functions exist
+expect(typeof rollDie).toBe("function");
+expect(typeof rollTwoDice).toBe("function");
+
+// Test case 2: Check if rollDie returns a number between 1 and 6
+for (let i = 0; i < 100; i++) {
+  const result = rollDie();
+  expect(result).toBeGreaterThanOrEqual(1);
+  expect(result).toBeLessThanOrEqual(6);
+}
+
+// Test case 3: Check if rollTwoDice returns a number between 2 and 12
+for (let i = 0; i < 100; i++) {
+  const result = rollTwoDice();
+  expect(result).toBeGreaterThanOrEqual(2);
+  expect(result).toBeLessThanOrEqual(12);
+}
+
+// Test case 4: Check if console.log was called three times
+expect(console.log.mock.calls.length).toBe(3);
+
+// Test case 5: Check if console.log outputs are within the expected range
+console.log.mock.calls.forEach(call => {
+  expect(call[0]).toBeGreaterThanOrEqual(2);
+  expect(call[0]).toBeLessThanOrEqual(12);
+});
+</code>

@@ -1,4 +1,6 @@
 {
+  "title": "JavaScript 101",
+  "content": "Welcome to JavaScript 101! This course is designed to introduce you to the fundamentals of programming using JavaScript. You'll learn about basic concepts such as variables, operators, conditionals, and functions. By the end of this course, you'll have a solid foundation in JavaScript programming and be ready to tackle more advanced topics.",
   "subjects": [
     {
       "key": "intro",
@@ -7,10 +9,6 @@
         {
           "key": "hello_name",
           "headline": "Write a program that displays your name"
-        },
-        {
-          "key": "greeting",
-          "headline": "Modify the program to display a greeting with your name"
         }
       ]
     },

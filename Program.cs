@@ -14,9 +14,12 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddAntiforgery(options =>
 {
-  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+  if (!builder.Environment.IsDevelopment())
+  {
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+  }
   options.Cookie.HttpOnly = true;
-  options.Cookie.SameSite = SameSiteMode.Strict;
   options.HeaderName = "X-CSRF-TOKEN";
 });
 
@@ -44,9 +47,9 @@ app.UseAntiforgery();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<ApplicationDbContext>();
-    DbInitializer.Initialize(context);
+  var services = scope.ServiceProvider;
+  var context = services.GetRequiredService<ApplicationDbContext>();
+  DbInitializer.Initialize(context);
 }
 
 app.Run();

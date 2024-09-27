@@ -1,0 +1,59 @@
+<main>
+  <h1>4. Conditional Statements (if/else)</h1>
+
+  <p>Conditional statements are a fundamental concept in programming that allow your code to make decisions and execute different actions based on certain conditions. In JavaScript, we use the `if`, `else if`, and `else` statements to create these decision-making structures.</p>
+
+  <h2>Basic Structure</h2>
+  <p>The basic structure of an if/else statement looks like this:</p>
+
+  <pre><code>
+if (condition) {
+  // Code to execute if the condition is true
+} else {
+  // Code to execute if the condition is false
+}
+  </code></pre>
+
+  <p>You can also use multiple conditions with `else if`:</p>
+
+  <pre><code>
+if (condition1) {
+  // Code to execute if condition1 is true
+} else if (condition2) {
+  // Code to execute if condition2 is true
+} else {
+  // Code to execute if all conditions are false
+}
+  </code></pre>
+
+  <h2>Example: Clothing recommendation based on temperature</h2>
+  <p>Let's look at an example that recommends clothing based on the temperature:</p>
+
+  <pre><code>
+let temperature = 22; // temperature in Celsius
+let recommendation;
+
+if (temperature < 0) {
+  recommendation = "It's freezing! Wear a heavy coat, scarf, and gloves.";
+} else if (temperature < 10) {
+  recommendation = "It's cold. A warm jacket is recommended.";
+} else if (temperature < 20) {
+  recommendation = "It's cool. A light jacket should be fine.";
+} else if (temperature < 30) {
+  recommendation = "It's warm. A t-shirt and shorts are perfect.";
+} else {
+  recommendation = "It's hot! Stay cool with light clothing and stay hydrated.";
+}
+
+console.log(recommendation);
+  </code></pre>
+
+  <p>In this example:</p>
+  <ul>
+    <li>We have a `temperature` variable set to 22°C</li>
+    <li>We use conditional statements to determine the appropriate clothing recommendation based on the temperature</li>
+    <li>Finally, we log the recommendation to the console</li>
+  </ul>
+
+  <p>Conditional statements are powerful tools that allow your programs to respond dynamically to different situations and user inputs.</p>
+</main>

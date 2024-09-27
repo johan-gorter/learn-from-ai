@@ -1,0 +1,51 @@
+<main>
+  <h2>Exercise 2b: Calculate and display age in dog years</h2>
+  <p>In this exercise, you'll practice using variables and basic arithmetic operations. Create a program that calculates and displays a person's age in "dog years" (1 human year = 7 dog years).</p>
+  <p>Use variables to store the person's name and age, then calculate and display their age in dog years.</p>
+  <p>To perform multiplication in JavaScript, we use the <code>*</code> operator. For example, <code>5 * 7</code> would give us 35.</p>
+</main>
+
+<code id="playground">
+// Create variables for name and age
+
+// Calculate age in dog years
+// Hint: Use the * operator to multiply age by 7
+
+// Display the result using console.log()
+console.log();
+</code>
+
+<dialog id="hint">
+  <p>Use let to declare variables for name (string) and age (number).</p>
+  <p>To calculate dog years, multiply the age by 7 using the * operator: age * 7</p>
+  <p>Use string concatenation or template literals to format your output message.</p>
+</dialog>
+
+<code id="solution">
+let name = "Sarah";
+let age = 25;
+let dogYears = age * 7;
+
+console.log(name + " is " + age + " years old in human years, which is " + dogYears + " years old in dog years.");
+</code>
+
+<code id="test-cases">
+// Test case 1: Check if variables are declared and have correct types
+expect(typeof name).toBe("string");
+expect(typeof age).toBe("number");
+expect(typeof dogYears).toBe("number");
+
+// Test case 2: Check if dogYears is calculated correctly
+expect(dogYears).toBe(age * 7);
+
+// Test case 3: Check if console.log was called exactly once
+expect(console.log.mock.calls.length).toBe(1);
+
+// Test case 4: Check if output contains all required information
+const output = console.log.mock.calls[0][0];
+expect(output).toContain(name);
+expect(output).toContain(age.toString());
+expect(output).toContain(dogYears.toString());
+expect(output).toContain("human years");
+expect(output).toContain("dog years");
+</code>

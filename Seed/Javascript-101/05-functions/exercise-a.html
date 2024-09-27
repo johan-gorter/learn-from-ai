@@ -1,0 +1,52 @@
+<main>
+  <h2>Exercise 5a: Write a function that converts Celsius to Fahrenheit</h2>
+  <p>Your task is to create a function named <code>celsiusToFahrenheit</code> that takes a temperature in Celsius as input and returns the equivalent temperature in Fahrenheit.</p>
+  <p>The formula for conversion is: F = (C * 9/5) + 32</p>
+  <p>After creating the function, use it to convert 25°C to Fahrenheit and log the result.</p>
+</main>
+
+<code id="playground">
+// Write your function here
+function celsiusToFahrenheit(celsius) {
+  // Your code here
+}
+
+// Test your function
+const celsiusTemp = 25;
+const fahrenheitTemp = celsiusToFahrenheit(celsiusTemp);
+console.log(`${celsiusTemp}°C is equal to ${fahrenheitTemp}°F`);
+</code>
+
+<dialog id="hint">
+  <p>Remember the formula: F = (C * 9/5) + 32</p>
+  <p>Use the <code>return</code> keyword to send back the calculated Fahrenheit temperature.</p>
+  <p>Don't forget to use parentheses to ensure the correct order of operations!</p>
+</dialog>
+
+<code id="solution">
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+const celsiusTemp = 25;
+const fahrenheitTemp = celsiusToFahrenheit(celsiusTemp);
+console.log(`${celsiusTemp}°C is equal to ${fahrenheitTemp}°F`);
+</code>
+
+<code id="test-cases">
+// Test case 1: Check if function exists
+expect(typeof celsiusToFahrenheit).toBe("function");
+
+// Test case 2: Check conversion for 0°C
+expect(celsiusToFahrenheit(0)).toBeCloseTo(32);
+
+// Test case 3: Check conversion for 100°C
+expect(celsiusToFahrenheit(100)).toBeCloseTo(212);
+
+// Test case 4: Check conversion for 25°C
+expect(celsiusToFahrenheit(25)).toBeCloseTo(77);
+
+// Test case 5: Check if console.log was called with correct output
+const logOutput = console.log.mock.calls[0][0];
+expect(logOutput).toBe("25°C is equal to 77°F");
+</code>
