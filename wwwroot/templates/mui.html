@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 101 - Exercise 1a</title>
+  <link rel="stylesheet" href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sidebar {
+      width: 300px;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    #playground,
+    #output {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="mui-appbar">
+    <div class="mui-container">
+      <table width="100%">
+        <tr class="mui--appbar-height">
+          <td class="mui--text-title">JavaScript 101</td>
+          <td class="mui--text-right">
+            <span>Welcome, User</span>
+            <button class="mui-btn mui-btn--flat">Logout</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </header>
+
+  <div class="content mui-container-fluid">
+    <div class="sidebar mui-panel">
+      <h2>Course Outline</h2>
+      <ul class="mui-list--unstyled">
+        <li class="mui--text-dark-secondary">✓ Introduction to Programming and JavaScript</li>
+        <li class="mui--text-accent">➤ Exercise 1a: Write a program that displays your name</li>
+        <li>Variables and Data Types</li>
+        <li>Basic Operators and Expressions</li>
+        <li>Conditional Statements (if/else)</li>
+        <li>Functions</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <h1>Exercise 1a: Write a program that displays your name</h1>
+      <p>Now that you've seen how to display "Hello, World!", let's personalize it! Your task is to write a JavaScript
+        program that displays your name in the console.</p>
+      <p>Use the <code>console.log()</code> function to output your name as a string (remember to use quotes around your
+        name).</p>
+
+      <h3>Playground</h3>
+      <textarea id="playground" class="mui-panel">
+// Write your code here
+console.log(</textarea>
+
+      <button id="runBtn" class="mui-btn mui-btn--primary">Run Code</button>
+      <button id="hintBtn" class="mui-btn mui-btn--accent">Hint</button>
+
+      <h3>Output</h3>
+      <pre id="output" class="mui-panel"></pre>
+
+      <div class="button-container">
+        <button class="mui-btn mui-btn--flat">Previous</button>
+        <button class="mui-btn mui-btn--flat mui-btn--primary">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <dialog id="hintDialog" class="mui-panel">
+    <h3>Hint</h3>
+    <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
+    <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
+    <button class="mui-btn mui-btn--flat" onclick="hintDialog.close()">Close</button>
+  </dialog>
+
+  <script>
+    const runBtn = document.getElementById('runBtn');
+    const hintBtn = document.getElementById('hintBtn');
+    const playground = document.getElementById('playground');
+    const output = document.getElementById('output');
+    const hintDialog = document.getElementById('hintDialog');
+
+    runBtn.addEventListener('click', () => {
+      output.textContent = ''; // Clear previous output
+      try {
+        const code = playground.value;
+        const originalLog = console.log;
+        console.log = (...args) => {
+          output.textContent += args.join(' ') + '\n';
+        };
+        eval(code);
+        console.log = originalLog;
+      } catch (error) {
+        output.textContent = 'Error: ' + error.message;
+      }
+    });
+
+    hintBtn.addEventListener('click', () => {
+      hintDialog.showModal();
+    });
+  </script>
+</body>
+
+</html>

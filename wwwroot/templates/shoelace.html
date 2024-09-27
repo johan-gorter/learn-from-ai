@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 101 - Exercise 1a</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+  <style>
+    body {
+      font-family: var(--sl-font-sans);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      gap: 2rem;
+    }
+
+    .course-outline {
+      flex: 1;
+      border-right: 1px solid var(--sl-color-neutral-200);
+      padding-right: 1rem;
+    }
+
+    .exercise-content {
+      flex: 2;
+    }
+
+    .code-playground {
+      margin-top: 1rem;
+    }
+
+    .output-console {
+      margin-top: 1rem;
+      background-color: var(--sl-color-neutral-50);
+      border: 1px solid var(--sl-color-neutral-200);
+      border-radius: var(--sl-border-radius-medium);
+      padding: 1rem;
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <sl-theme name="light"></sl-theme>
+
+  <header>
+    <sl-navbar>
+      <sl-button slot="nav-end" variant="primary" size="small">
+        <sl-icon slot="prefix" name="person-circle"></sl-icon>
+        Username
+      </sl-button>
+      <sl-button slot="nav-end" variant="text" size="small">
+        <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
+        Logout
+      </sl-button>
+    </sl-navbar>
+  </header>
+
+  <div class="container">
+    <main>
+      <aside class="course-outline">
+        <h2>JavaScript 101</h2>
+        <sl-tree>
+          <sl-tree-item expanded>
+            Introduction to Programming and JavaScript
+            <sl-tree-item selected>Write a program that displays your name</sl-tree-item>
+          </sl-tree-item>
+          <sl-tree-item>Variables and Data Types</sl-tree-item>
+          <sl-tree-item>Basic Operators and Expressions</sl-tree-item>
+          <sl-tree-item>Conditional Statements (if/else)</sl-tree-item>
+          <sl-tree-item>Functions</sl-tree-item>
+        </sl-tree>
+      </aside>
+
+      <section class="exercise-content">
+        <h1>Exercise 1a: Write a program that displays your name</h1>
+        <p>Now that you've seen how to display "Hello, World!", let's personalize it! Your task is to write a JavaScript
+          program that displays your name in the console.</p>
+        <p>Use the <code>console.log()</code> function to output your name as a string (remember to use quotes around
+          your name).</p>
+
+        <div class="code-playground">
+          <sl-textarea label="Code Playground" rows="5" resize="auto">
+            // Write your code here
+            console.log(</sl-textarea>
+        </div>
+
+        <div class="output-console">
+          <h3>Console Output</h3>
+          <sl-textarea label="Console" rows="3" readonly></sl-textarea>
+        </div>
+
+        <sl-button-group>
+          <sl-button variant="primary">Run Code</sl-button>
+          <sl-button id="hint-button">Hint</sl-button>
+          <sl-button variant="success">Submit</sl-button>
+        </sl-button-group>
+      </section>
+    </main>
+
+    <nav class="navigation-buttons">
+      <sl-button variant="neutral" disabled>
+        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+        Previous
+      </sl-button>
+      <sl-button variant="neutral">
+        Next
+        <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+      </sl-button>
+    </nav>
+  </div>
+
+  <sl-dialog label="Hint" class="dialog-overview">
+    <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
+    <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
+    <sl-button slot="footer" variant="primary">Close</sl-button>
+  </sl-dialog>
+
+  <script>
+    const hintButton = document.querySelector('#hint-button');
+    const dialog = document.querySelector('sl-dialog');
+
+    hintButton.addEventListener('click', () => dialog.show());
+    dialog.querySelector('sl-button[slot="footer"]').addEventListener('click', () => dialog.hide());
+  </script>
+</body>
+
+</html>
