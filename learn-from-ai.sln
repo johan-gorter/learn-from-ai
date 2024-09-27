@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnFromAI", "LearnFromAI.csproj", "{A4BA13CE-298C-4E96-9BD5-48E6993AFBEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnFromAI.Web", "LearnFromAI.Web/LearnFromAI.Web.csproj", "{A4BA13CE-298C-4E96-9BD5-48E6993AFBEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
