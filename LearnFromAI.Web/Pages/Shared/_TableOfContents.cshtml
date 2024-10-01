@@ -15,6 +15,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const courseId = @Model;
         const currentPageId = @(ViewContext.RouteData.Values["id"]);
+        const isExercisePage = '@ViewContext.RouteData.Values["page"]'.includes('Exercise');
 
         fetch(`/api/Courses/${courseId}`)
             .then(response => response.json())
@@ -23,9 +24,6 @@
                 course.subjects.forEach(subject => {
                     const li = document.createElement('li');
                     li.className = 'list-group-item';
-                    if (subject.id === currentPageId) {
-                        li.classList.add('active');
-                    }
                     const a = document.createElement('a');
                     a.href = `/Subject/${subject.id}`;
                     a.textContent = subject.headline;
@@ -38,6 +36,9 @@
                         subject.exercises.forEach(exercise => {
                             const exerciseLi = document.createElement('li');
                             exerciseLi.className = 'list-group-item';
+                            if (isExercisePage && exercise.id === currentPageId) {
+                                exerciseLi.classList.add('active');
+                            }
                             const exerciseA = document.createElement('a');
                             exerciseA.href = `/Exercise/${exercise.id}`;
                             exerciseA.textContent = exercise.headline;
@@ -45,6 +46,10 @@
                             ul.appendChild(exerciseLi);
                         });
                         li.appendChild(ul);
+                    }
+
+                    if (!isExercisePage && subject.id === currentPageId) {
+                        li.classList.add('active');
                     }
                 });
             })

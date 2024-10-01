@@ -1,39 +1,53 @@
 @page "{id:int}"
 @model LearnFromAI.Web.Pages.ExerciseModel
 @{
-    ViewData["Title"] = Model.Exercise.Headline;
+  ViewData["Title"] = Model.Exercise.Headline;
 }
 
 <style>
-    #tableOfContents a {
-        text-decoration: none;
-    }
+  #tableOfContents a {
+    text-decoration: none;
+  }
 
-    #tableOfContents .active>a {
-        font-weight: bold;
-    }
+  #tableOfContents .active>a {
+    font-weight: bold;
+  }
 
-    #tableOfContents .list-group-item.active {
-        background-color: inherit;
-        border-color: rgba(0, 0, 0, .125);
-    }
+  #tableOfContents .list-group-item.active {
+    background-color: inherit;
+    border-color: rgba(0, 0, 0, .125);
+  }
+
+  /* New styles for textareas */
+  textarea {
+    width: 100%;
+    height: 15em;
+    resize: vertical;
+  }
 </style>
 
 <div class="container-fluid">
-    <div class="row">
-        <!-- Table of Contents -->
-        <div class="col-md-3">
-            @await Html.PartialAsync("_TableOfContents", Model.Exercise.Subject.CourseId)
-        </div>
-
-        <!-- Main Content -->
-        <div class="col-md-9">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">@Model.Exercise.Headline</h2>
-                    <p class="card-text">@Html.Raw(Model.Exercise.Content)</p>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <!-- Table of Contents -->
+    <div class="col-md-3">
+      @await Html.PartialAsync("_TableOfContents", Model.Exercise.Subject.CourseId)
     </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">@Html.Raw(Model.Exercise.Content)</p>
+
+          <!-- Add inline CSS to hide solution and test-cases textareas -->
+          <style>
+            #solution,
+            #test-cases {
+              display: none;
+            }
+          </style>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
