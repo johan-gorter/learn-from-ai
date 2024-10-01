@@ -7,10 +7,10 @@ Create the theory and example for subject 1. Use a HTML snippet, start with <mai
 Create the content for subject 1 excercise a.
 Use a HTML snippet.
 Explain the excercise in a <main> tag.
-Provide the start of the solution in a <code id="playground"> tag.
+Provide the start of the solution in a <textarea id="playground"> tag.
 Provide a hint in a <dialog id="hint"> tag.
-Provide a reference solution in a <code id="solution"> tag.
-Provide test cases in a <code id="test-cases"> tag.
+Provide a reference solution in a <textarea id="solution"> tag.
+Provide test cases in a <textarea id="test-cases"> tag.
 
 ## Notepad "Content creator"
 In this project, we are teaching students to learn programming Javascript. The first 101 course teaches students the basics. Students are non-technical.

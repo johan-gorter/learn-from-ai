@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace LearnFromAI.Models
 {
@@ -10,6 +11,7 @@ namespace LearnFromAI.Models
     public int Order { get; set; }
     public List<Exercise> Exercises { get; set; }
     public int CourseId { get; set; }
+    [JsonIgnore]
     public Course Course { get; set; }
     public string Content { get; set; }
   }

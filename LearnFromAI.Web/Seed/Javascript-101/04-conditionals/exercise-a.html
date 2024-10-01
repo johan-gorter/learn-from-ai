@@ -1,0 +1,60 @@
+<main>
+  <h2>Exercise 4a: Check if a number is positive, negative, or zero</h2>
+  <p>In this exercise, you'll use conditional statements to determine if a number is positive, negative, or zero.</p>
+  <p>Your task is to write a JavaScript program that takes a number and uses if-else statements to check its sign. Then, use <code>console.log()</code> to display whether the number is positive, negative, or zero.</p>
+  <p>Hint: You'll need to use multiple if-else statements to cover all cases.</p>
+</main>
+
+<textarea id="playground">
+// Write your code here
+let number = 5; // You can change this number to test different values
+
+// Use if-else statements to check if the number is positive, negative, or zero
+// Then use console.log() to display the result
+
+</textarea>
+
+<dialog id="hint">
+  <p>Use if-else statements to check the following conditions:</p>
+  <ul>
+    <li>If the number is greater than 0, it's positive</li>
+    <li>If the number is less than 0, it's negative</li>
+    <li>If the number is equal to 0, it's zero</li>
+  </ul>
+  <p>Use console.log() to display the appropriate message for each case.</p>
+</dialog>
+
+<textarea id="solution">
+let number = 5; // You can change this number to test different values
+
+if (number > 0) {
+  console.log("The number is positive");
+} else if (number < 0) {
+  console.log("The number is negative");
+} else {
+  console.log("The number is zero");
+}
+</textarea>
+
+<textarea id="test-cases">
+// Test case 1: Check if the code handles positive numbers correctly
+number = 5;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("The number is positive");
+
+// Test case 2: Check if the code handles negative numbers correctly
+number = -3;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("The number is negative");
+
+// Test case 3: Check if the code handles zero correctly
+number = 0;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("The number is zero");
+
+// Test case 4: Check if console.log was called exactly once for each test
+expect(console.log.mock.calls.length).toBe(1);
+</textarea>

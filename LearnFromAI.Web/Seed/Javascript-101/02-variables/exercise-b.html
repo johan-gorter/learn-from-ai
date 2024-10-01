@@ -5,7 +5,7 @@
   <p>To perform multiplication in JavaScript, we use the <code>*</code> operator. For example, <code>5 * 7</code> would give us 35.</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Create variables for name and age
 
 // Calculate age in dog years
@@ -13,7 +13,7 @@
 
 // Display the result using console.log()
 console.log();
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>Use let to declare variables for name (string) and age (number).</p>
@@ -21,15 +21,15 @@ console.log();
   <p>Use string concatenation or template literals to format your output message.</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 let name = "Sarah";
 let age = 25;
 let dogYears = age * 7;
 
 console.log(name + " is " + age + " years old in human years, which is " + dogYears + " years old in dog years.");
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if variables are declared and have correct types
 expect(typeof name).toBe("string");
 expect(typeof age).toBe("number");
@@ -48,4 +48,4 @@ expect(output).toContain(age.toString());
 expect(output).toContain(dogYears.toString());
 expect(output).toContain("human years");
 expect(output).toContain("dog years");
-</code>
+</textarea>

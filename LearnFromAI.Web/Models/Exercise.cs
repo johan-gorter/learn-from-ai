@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace LearnFromAI.Models
 {
     public class Exercise
@@ -7,6 +9,7 @@ namespace LearnFromAI.Models
         public string Headline { get; set; }
         public int Order { get; set; }  // Add this property
         public int SubjectId { get; set; }
+        [JsonIgnore]
         public Subject Subject { get; set; }
         public string Content { get; set; }
     }

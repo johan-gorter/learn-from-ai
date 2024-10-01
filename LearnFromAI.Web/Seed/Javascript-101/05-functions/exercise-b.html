@@ -11,7 +11,7 @@
   <p>This combines <code>Math.random()</code> (which generates a random number between 0 and 1) with <code>Math.floor()</code> (which rounds down to the nearest integer).</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Write your functions here
 function rollDie() {
   // Your code here
@@ -25,7 +25,7 @@ function rollTwoDice() {
 console.log(rollTwoDice()); // Should output a number between 2 and 12
 console.log(rollTwoDice()); // Should output a number between 2 and 12
 console.log(rollTwoDice()); // Should output a number between 2 and 12
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>For <code>rollDie()</code>, use the formula provided to generate a random number between 1 and 6.</p>
@@ -33,7 +33,7 @@ console.log(rollTwoDice()); // Should output a number between 2 and 12
   <p>Remember to return the results from both functions!</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 function rollDie() {
   return Math.floor(Math.random() * 6) + 1;
 }
@@ -45,9 +45,9 @@ function rollTwoDice() {
 console.log(rollTwoDice()); // Outputs a number between 2 and 12
 console.log(rollTwoDice()); // Outputs a number between 2 and 12
 console.log(rollTwoDice()); // Outputs a number between 2 and 12
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if functions exist
 expect(typeof rollDie).toBe("function");
 expect(typeof rollTwoDice).toBe("function");
@@ -74,4 +74,4 @@ console.log.mock.calls.forEach(call => {
   expect(call[0]).toBeGreaterThanOrEqual(2);
   expect(call[0]).toBeLessThanOrEqual(12);
 });
-</code>
+</textarea>

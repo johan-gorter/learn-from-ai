@@ -5,7 +5,7 @@
   <p>After creating the function, use it to convert 25°C to Fahrenheit and log the result.</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Write your function here
 function celsiusToFahrenheit(celsius) {
   // Your code here
@@ -15,7 +15,7 @@ function celsiusToFahrenheit(celsius) {
 const celsiusTemp = 25;
 const fahrenheitTemp = celsiusToFahrenheit(celsiusTemp);
 console.log(`${celsiusTemp}°C is equal to ${fahrenheitTemp}°F`);
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>Remember the formula: F = (C * 9/5) + 32</p>
@@ -23,7 +23,7 @@ console.log(`${celsiusTemp}°C is equal to ${fahrenheitTemp}°F`);
   <p>Don't forget to use parentheses to ensure the correct order of operations!</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 function celsiusToFahrenheit(celsius) {
   return (celsius * 9/5) + 32;
 }
@@ -31,9 +31,9 @@ function celsiusToFahrenheit(celsius) {
 const celsiusTemp = 25;
 const fahrenheitTemp = celsiusToFahrenheit(celsiusTemp);
 console.log(`${celsiusTemp}°C is equal to ${fahrenheitTemp}°F`);
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if function exists
 expect(typeof celsiusToFahrenheit).toBe("function");
 
@@ -49,4 +49,4 @@ expect(celsiusToFahrenheit(25)).toBeCloseTo(77);
 // Test case 5: Check if console.log was called with correct output
 const logOutput = console.log.mock.calls[0][0];
 expect(logOutput).toBe("25°C is equal to 77°F");
-</code>
+</textarea>

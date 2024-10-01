@@ -1,0 +1,86 @@
+<main>
+  <h2>Exercise 4b: Determine a student's grade</h2>
+  <p>In this exercise, you'll use conditional statements to determine a student's grade based on their score.</p>
+  <p>Your task is to write a JavaScript program that takes a student's score (0-100) and uses if-else statements to determine the corresponding letter grade. Then, use <code>console.log()</code> to display the grade.</p>
+  <p>Use the following grading scale:</p>
+  <ul>
+    <li>A: 90-100</li>
+    <li>B: 80-89</li>
+    <li>C: 70-79</li>
+    <li>D: 60-69</li>
+    <li>F: 0-59</li>
+  </ul>
+  <p>Hint: You'll need to use multiple if-else statements to cover all grade ranges.</p>
+</main>
+
+<textarea id="playground">
+// Write your code here
+let score = 85; // You can change this score to test different values
+
+// Use if-else statements to determine the grade based on the score
+// Then use console.log() to display the result
+
+</textarea>
+
+<dialog id="hint">
+  <p>Use if-else statements to check the following conditions:</p>
+  <ul>
+    <li>If the score is 90 or above, it's an A</li>
+    <li>If the score is 80 or above (but less than 90), it's a B</li>
+    <li>If the score is 70 or above (but less than 80), it's a C</li>
+    <li>If the score is 60 or above (but less than 70), it's a D</li>
+    <li>If the score is below 60, it's an F</li>
+  </ul>
+  <p>Use console.log() to display the appropriate grade for each case.</p>
+</dialog>
+
+<textarea id="solution">
+let score = 85; // You can change this score to test different values
+
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 80) {
+  console.log("Grade: B");
+} else if (score >= 70) {
+  console.log("Grade: C");
+} else if (score >= 60) {
+  console.log("Grade: D");
+} else {
+  console.log("Grade: F");
+}
+</textarea>
+
+<textarea id="test-cases">
+// Test case 1: Check if the code handles A grade correctly
+score = 95;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("Grade: A");
+
+// Test case 2: Check if the code handles B grade correctly
+score = 85;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("Grade: B");
+
+// Test case 3: Check if the code handles C grade correctly
+score = 75;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("Grade: C");
+
+// Test case 4: Check if the code handles D grade correctly
+score = 65;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("Grade: D");
+
+// Test case 5: Check if the code handles F grade correctly
+score = 55;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe("Grade: F");
+
+// Test case 6: Check if console.log was called exactly once for each test
+expect(console.log.mock.calls.length).toBe(1);
+</textarea>

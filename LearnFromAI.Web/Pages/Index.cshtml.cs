@@ -1,19 +1,40 @@
+using LearnFromAI.Data;
+using LearnFromAI.Models;
+using LearnFromAI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LearnFromAI.Pages;
-
-public class IndexModel : PageModel
+namespace LearnFromAI.Web.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
+  public class IndexModel : PageModel
+  {
+    private readonly ICourseService _courseService;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public IndexModel(ICourseService courseService)
     {
-        _logger = logger;
+      _courseService = courseService;
     }
 
-    public void OnGet()
-    {
+    public IEnumerable<Course> Courses { get; set; }
 
+    public async Task OnGetAsync()
+    {
+      Courses = await _courseService.GetCoursesAsync();
     }
+
+    public async Task<IActionResult> OnGetStartCourseAsync(int id)
+    {
+      var course = await _courseService.GetCourseByIdAsync(id);
+      if (course == null || !course.Subjects.Any())
+      {
+        return NotFound();
+      }
+
+      var firstSubject = course.Subjects.OrderBy(s => s.Order).First();
+      return RedirectToPage("/Subject", new { id = firstSubject.Id });
+    }
+  }
 }

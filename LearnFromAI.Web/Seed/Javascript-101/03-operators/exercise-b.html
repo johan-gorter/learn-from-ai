@@ -1,0 +1,50 @@
+<main>
+  <h2>Exercise 3b: Determine if a number is even or odd</h2>
+  <p>In this exercise, you'll use the modulus operator (%) to determine if a number is even or odd. The modulus operator returns the remainder of a division operation.</p>
+  <p>Your task is to write a JavaScript program that takes a number, uses the modulus operator to check if it's even or odd, and then uses <code>console.log()</code> to display the result of the modulus operation.</p>
+  <p>Hint: When a number is divided by 2, an even number will have a remainder of 0, while an odd number will have a remainder of 1.</p>
+</main>
+
+<textarea id="playground">
+// Write your code here
+let number = 7; // You can change this number to test different values
+
+// Use the modulus operator to check if the number is even or odd
+// Then use console.log() to display the result of number % 2
+
+</textarea>
+
+<dialog id="hint">
+  <p>Use the modulus operator (%) to find the remainder when dividing by 2.</p>
+  <p>The expression will be: number % 2</p>
+  <p>Use console.log() to display this result.</p>
+</dialog>
+
+<textarea id="solution">
+let number = 7; // You can change this number to test different values
+
+console.log(number % 2);
+</textarea>
+
+<textarea id="test-cases">
+// Test case 1: Check if the code handles even numbers correctly
+number = 4;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe(0);
+
+// Test case 2: Check if the code handles odd numbers correctly
+number = 7;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe(1);
+
+// Test case 3: Check if the code works with zero
+number = 0;
+console.log.mockClear();
+eval(userCode);
+expect(console.log.mock.calls[0][0]).toBe(0);
+
+// Test case 4: Check if console.log was called exactly once for each test
+expect(console.log.mock.calls.length).toBe(1);
+</textarea>

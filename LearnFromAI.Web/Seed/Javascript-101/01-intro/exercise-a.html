@@ -6,21 +6,21 @@
     name).</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Write your code here
 console.log(
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>Remember to enclose your name in quotes, like this: "Your Name"</p>
   <p>Don't forget to close the parentheses and add a semicolon at the end of the line!</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 console.log("Alice Johnson");
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if output is a non-empty string
 const output = console.log.mock.calls[0][0];
 expect(typeof output).toBe("string");
@@ -31,4 +31,4 @@ expect(output).not.toContain("Hello, World!");
 
 // Test case 3: Check if console.log was called exactly once
 expect(console.log.mock.calls.length).toBe(1);
-</code>
+</textarea>

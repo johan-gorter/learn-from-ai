@@ -4,14 +4,14 @@
   <p>Use appropriate variable names and data types for each piece of information.</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Create your variables here
 
 // Display the information using console.log()
 console.log("My name is:");
 console.log("I am years old");
 console.log("My favorite color is:");
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>Remember to use let or const to declare your variables.</p>
@@ -19,7 +19,7 @@ console.log("My favorite color is:");
   <p>You can use the + operator to combine strings and variables in console.log().</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 let name = "John Doe";
 let age = 30;
 let favoriteColor = "blue";
@@ -27,9 +27,9 @@ let favoriteColor = "blue";
 console.log("My name is: " + name);
 console.log("I am " + age + " years old");
 console.log("My favorite color is: " + favoriteColor);
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if variables are declared and have correct types
 expect(typeof name).toBe("string");
 expect(typeof age).toBe("number");
@@ -47,4 +47,4 @@ expect(console.log.mock.calls.length).toBe(3);
 expect(console.log.mock.calls[0][0]).toContain(name);
 expect(console.log.mock.calls[1][0]).toContain(age.toString());
 expect(console.log.mock.calls[2][0]).toContain(favoriteColor);
-</code>
+</textarea>

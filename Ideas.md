@@ -16,13 +16,23 @@ Use service worker
   --> Progress: never cached
 
 
-First load: 
+First load:
  - main content is fastest as as theoretically possible
  - Hiccup when rest of the content is loading
- 
+
 Next pages with service worker
  - Full page reload causing loss of focus
    - something in cache: immediate
    - not in cache: white screen flash? (service worker can show a skeleton, onbeforeunload can make the skeleton)
  - Page reload on invalid cache
 
+
+# current discussion
+
+first/next/previous page of course/subject/exercise
+
+load TOC on demand, navigation buttons appear afterwards
+
+
+
+zx

@@ -4,26 +4,26 @@
   <p>Display the result using <code>console.log()</code>.</p>
 </main>
 
-<code id="playground">
+<textarea id="playground">
 // Write your code here
 let length = ;
 let width = ;
 let area = ;
 console.log(
-</code>
+</textarea>
 
 <dialog id="hint">
   <p>Remember to assign values to the <code>length</code> and <code>width</code> variables, and use the multiplication operator <code>*</code> to calculate the area.</p>
 </dialog>
 
-<code id="solution">
+<textarea id="solution">
 let length = 5;
 let width = 3;
 let area = length * width;
 console.log("The area of the rectangle is: " + area);
-</code>
+</textarea>
 
-<code id="test-cases">
+<textarea id="test-cases">
 // Test case 1: Check if output is a non-empty string
 const output = console.log.mock.calls[0][0];
 expect(typeof output).toBe("string");
@@ -34,4 +34,4 @@ expect(output).toContain("15");
 
 // Test case 3: Check if console.log was called exactly once
 expect(console.log.mock.calls.length).toBe(1);
-</code>
+</textarea>
