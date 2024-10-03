@@ -1,58 +1,139 @@
-@model int
+@model (int CourseId, int? CurrentSubjectId, int? CurrentExerciseId)
 
-<div id="tableOfContents" class="card">
-    <div class="card-header">
-        <h5>Table of Contents</h5>
-    </div>
-    <div class="card-body">
-        <ul id="tocList" class="list-group list-group-flush">
-            <!-- TOC will be populated here -->
-        </ul>
-    </div>
+<div id="tableOfContents">
+  <h2 class="text-xl font-bold mb-4 text-primary">Course Outline</h2>
+  <ul id="subjectList" class="space-y-2">
+    <!-- Subjects and exercises will be dynamically inserted here -->
+  </ul>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const courseId = @Model;
-        const currentPageId = @(ViewContext.RouteData.Values["id"]);
-        const isExercisePage = '@ViewContext.RouteData.Values["page"]'.includes('Exercise');
+  document.addEventListener('DOMContentLoaded', function () {
+    const courseId = @Model.CourseId;
+    const currentSubjectId = @(Model.CurrentSubjectId.HasValue ? Model.CurrentSubjectId.Value : -1);
+    const currentExerciseId = @(Model.CurrentExerciseId.HasValue ? Model.CurrentExerciseId.Value : -1);
 
-        fetch(`/api/Courses/${courseId}`)
-            .then(response => response.json())
-            .then(course => {
-                const tocList = document.getElementById('tocList');
-                course.subjects.forEach(subject => {
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item';
-                    const a = document.createElement('a');
-                    a.href = `/Subject/${subject.id}`;
-                    a.textContent = subject.headline;
-                    li.appendChild(a);
-                    tocList.appendChild(li);
+    fetch(`/api/Courses/${courseId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(course => {
+        const subjectList = document.getElementById('subjectList');
+        course.subjects.sort((a, b) => a.order - b.order);
 
-                    if (subject.exercises && subject.exercises.length > 0) {
-                        const ul = document.createElement('ul');
-                        ul.className = 'list-group list-group-flush ml-3';
-                        subject.exercises.forEach(exercise => {
-                            const exerciseLi = document.createElement('li');
-                            exerciseLi.className = 'list-group-item';
-                            if (isExercisePage && exercise.id === currentPageId) {
-                                exerciseLi.classList.add('active');
-                            }
-                            const exerciseA = document.createElement('a');
-                            exerciseA.href = `/Exercise/${exercise.id}`;
-                            exerciseA.textContent = exercise.headline;
-                            exerciseLi.appendChild(exerciseA);
-                            ul.appendChild(exerciseLi);
-                        });
-                        li.appendChild(ul);
-                    }
+        let prevItem = null;
+        let nextItem = null;
+        let currentItemFound = false;
 
-                    if (!isExercisePage && subject.id === currentPageId) {
-                        li.classList.add('active');
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching course data:', error));
-    });
+        course.subjects.forEach((subject, subjectIndex) => {
+          const li = document.createElement('li');
+          li.className = 'mb-2';
+
+          const a = document.createElement('a');
+          a.href = `/Subject/${subject.id}`;
+          a.className = `block hover:text-secondary ${subject.id === currentSubjectId && currentExerciseId === -1 ? 'font-bold' : ''}`;
+          a.textContent = subject.headline;
+
+          li.appendChild(a);
+
+          if (subject.exercises && subject.exercises.length > 0) {
+            const exerciseList = document.createElement('ul');
+            exerciseList.className = 'ml-4 mt-1 space-y-1';
+
+            subject.exercises.sort((a, b) => a.order - b.order);
+
+            subject.exercises.forEach((exercise, exerciseIndex) => {
+              const exerciseLi = document.createElement('li');
+              const exerciseA = document.createElement('a');
+              exerciseA.href = `/Exercise/${exercise.id}`;
+              exerciseA.className = `block text-sm hover:text-secondary ${exercise.id === currentExerciseId ? 'font-bold' : ''}`;
+              exerciseA.textContent = exercise.headline;
+              exerciseLi.appendChild(exerciseA);
+              exerciseList.appendChild(exerciseLi);
+
+              if (currentItemFound && !nextItem) {
+                nextItem = { type: 'exercise', id: exercise.id };
+              }
+
+              if (exercise.id === currentExerciseId) {
+                currentItemFound = true;
+                if (exerciseIndex < subject.exercises.length - 1) {
+                  nextItem = { type: 'exercise', id: subject.exercises[exerciseIndex + 1].id };
+                } else if (subjectIndex < course.subjects.length - 1) {
+                  nextItem = { type: 'subject', id: course.subjects[subjectIndex + 1].id };
+                }
+                if (exerciseIndex > 0) {
+                  prevItem = { type: 'exercise', id: subject.exercises[exerciseIndex - 1].id };
+                } else {
+                  prevItem = { type: 'subject', id: subject.id };
+                }
+              } else if (!currentItemFound) {
+                prevItem = { type: 'exercise', id: exercise.id };
+              }
+            });
+
+            li.appendChild(exerciseList);
+          }
+
+          subjectList.appendChild(li);
+
+          if (subject.id === currentSubjectId) {
+            if (currentExerciseId === -1) {
+              currentItemFound = true;
+              if (subject.exercises && subject.exercises.length > 0) {
+                nextItem = { type: 'exercise', id: subject.exercises[0].id };
+              } else if (subjectIndex < course.subjects.length - 1) {
+                nextItem = { type: 'subject', id: course.subjects[subjectIndex + 1].id };
+              }
+              if (subjectIndex > 0) {
+                const prevSubject = course.subjects[subjectIndex - 1];
+                if (prevSubject.exercises && prevSubject.exercises.length > 0) {
+                  prevItem = { type: 'exercise', id: prevSubject.exercises[prevSubject.exercises.length - 1].id };
+                } else {
+                  prevItem = { type: 'subject', id: prevSubject.id };
+                }
+              } else {
+                prevItem = null; // This is the first subject, so there's no previous item
+              }
+            }
+          }
+        });
+
+        // Update navigation buttons
+        updateNavigationButtons(prevItem, nextItem);
+      })
+      .catch(error => {
+        console.error('Error fetching course data:', error);
+        const subjectList = document.getElementById('subjectList');
+        subjectList.innerHTML = '<li>Error loading course outline</li>';
+      });
+  });
+
+  function updateNavigationButtons(prevItem, nextItem) {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (prevItem) {
+      prevBtn.disabled = false;
+      prevBtn.href = `/${prevItem.type === 'subject' ? 'Subject' : 'Exercise'}/${prevItem.id}`;
+      prevBtn.style.visibility = 'visible';
+    } else {
+      prevBtn.disabled = true;
+      prevBtn.removeAttribute('href');
+      prevBtn.style.visibility = 'hidden';
+    }
+
+    if (nextItem) {
+      nextBtn.disabled = false;
+      nextBtn.href = `/${nextItem.type === 'subject' ? 'Subject' : 'Exercise'}/${nextItem.id}`;
+      nextBtn.style.visibility = 'visible';
+    } else {
+      nextBtn.disabled = true;
+      nextBtn.removeAttribute('href');
+      nextBtn.style.visibility = 'hidden';
+    }
+  }
 </script>

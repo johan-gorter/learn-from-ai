@@ -1,27 +1,23 @@
 ﻿@page
-@model LearnFromAI.Web.Pages.IndexModel
+@model IndexModel
+@inject ICourseService CourseService
 @{
-  ViewData["Title"] = "Learn From AI - Courses";
+    ViewData["Title"] = "Home page";
+    var courses = await CourseService.GetCoursesAsync();
 }
 
-<div class="container">
-  <h1 class="display-4 text-center mb-4">Welcome to Learn From AI</h1>
-  <p class="lead text-center mb-5">Explore our courses and start learning today!</p>
-
-  <div class="row">
-    @foreach (var course in Model.Courses)
-    {
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">@course.Title</h5>
-            <p class="card-text">@course.Content</p>
-          </div>
-          <div class="card-footer">
-            <a asp-page-handler="StartCourse" asp-route-id="@course.Id" class="btn btn-primary">Start Course</a>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
+<div class="container mx-auto">
+    <h2 class="text-3xl font-bold mb-6">Available Courses</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach (var course in courses)
+        {
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-2">@course.Title</h3>
+                <p class="text-gray-600 mb-4">@course.Content.Substring(0, Math.Min(100, course.Content.Length))...</p>
+                <a href="/Course/@course.Id" class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition-colors">
+                    Start Course
+                </a>
+            </div>
+        }
+    </div>
 </div>
