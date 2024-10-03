@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
-namespace LearnFromAI.Pages
+namespace LearnFromAI.Web.Pages
 {
   [AllowAnonymous]
   public class LoginModel : PageModel
