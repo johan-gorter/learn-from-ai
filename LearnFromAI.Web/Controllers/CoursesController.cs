@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using LearnFromAI.Services;
-using LearnFromAI.Models;
+using LearnFromAI.Web.Services;
+using LearnFromAI.Web.Models;
 
 namespace LearnFromAI.Web.Controllers
 {

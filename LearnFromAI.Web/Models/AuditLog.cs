@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace LearnFromAI.Models
+namespace LearnFromAI.Web.Models
 {
   public class AuditLog
   {

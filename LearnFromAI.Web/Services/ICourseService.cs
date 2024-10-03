@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LearnFromAI.Models;
+using LearnFromAI.Web.Models;
 
-namespace LearnFromAI.Services
+namespace LearnFromAI.Web.Services
 {
   public interface ICourseService
   {

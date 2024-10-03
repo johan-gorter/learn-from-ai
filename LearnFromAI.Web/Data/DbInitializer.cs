@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using LearnFromAI.Models;
+using LearnFromAI.Web.Models;
 
 namespace LearnFromAI.Data
 {

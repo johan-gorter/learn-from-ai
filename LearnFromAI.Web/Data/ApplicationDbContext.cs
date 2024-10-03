@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using LearnFromAI.Models;
+using LearnFromAI.Web.Models;
 
 namespace LearnFromAI.Data
 {

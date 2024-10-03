@@ -1,5 +1,5 @@
 using LearnFromAI.Data;
-using LearnFromAI.Services;
+using LearnFromAI.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;

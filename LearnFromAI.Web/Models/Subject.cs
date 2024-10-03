@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace LearnFromAI.Models
+namespace LearnFromAI.Web.Models
 {
   public class Subject
   {

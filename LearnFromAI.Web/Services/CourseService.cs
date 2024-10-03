@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LearnFromAI.Data;
-using LearnFromAI.Models;
+using LearnFromAI.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LearnFromAI.Services
+namespace LearnFromAI.Web.Services
 {
   public class CourseService : ICourseService
   {
