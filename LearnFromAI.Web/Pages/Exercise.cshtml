@@ -35,6 +35,11 @@
     </section>
 </div>
 
+<div class="mt-8 flex justify-between">
+  <button id="prevButton" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white invisible">Previous</button>
+  <button id="nextButton" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white invisible">Next</button>
+</div>
+
 <dialog id="hintDialog" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-white p-6 rounded shadow-lg max-w-md">
         <h3 class="text-xl font-bold mb-4 text-primary">Hint</h3>
@@ -60,6 +65,8 @@
         const codeEditor = document.getElementById('codeEditor');
         const consoleOutput = document.getElementById('consoleOutput');
         const hintContent = document.getElementById('hintContent');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
 
         // Parse the exercise content
         const parser = new DOMParser();
@@ -125,5 +132,7 @@
             codeEditor.value = solutionCode;
             hintDialog.classList.add('hidden');
         });
+
+        // TODO: Add logic to show/hide buttons and set their href attributes based on the current exercise's position in the subject
     </script>
 }

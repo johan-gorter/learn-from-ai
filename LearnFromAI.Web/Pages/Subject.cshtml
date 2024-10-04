@@ -21,7 +21,6 @@
       <h3 class="text-xl font-bold mb-4 text-primary">Exercises</h3>
       <ul class="space-y-2">
         @foreach (var exercise in Model.Subject.Exercises.OrderBy(e => e.Order))
-
         {
           <li>
             <a href="/Exercise/@exercise.Id" class="text-blue-600 hover:underline">@exercise.Headline</a>
@@ -33,12 +32,17 @@
 </div>
 
 <div class="mt-8 flex justify-between">
-  <a href="/Course/@Model.Subject.CourseId" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Back to
-    Course</a>
-  @if (Model.Subject.Exercises.Any())
-
-  {
-    <a href="/Exercise/@Model.Subject.Exercises.OrderBy(e => e.Order).First().Id"
-      class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Start First Exercise</a>
-  }
+  <button id="prevButton" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white invisible">Previous</button>
+  <button id="nextButton" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white invisible">Next</button>
 </div>
+
+@section Scripts {
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const prevButton = document.getElementById('prevButton');
+      const nextButton = document.getElementById('nextButton');
+
+      // TODO: Add logic to show/hide buttons and set their href attributes based on the current subject's position in the course
+    });
+  </script>
+}
