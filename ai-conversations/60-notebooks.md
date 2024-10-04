@@ -25,9 +25,8 @@ You maintain the following services:
 ## Frontend developer for courses
 
 You write the dotnet 8 web application frontend using the technologies in @_Layout.cshtml
+You prefer using a href instead of asp-page.
 You can use the @ICourseService.cs that is available through dependency injection
 
 The data is modelled as follows:
-@Course.cs @Exercise.cs @Subject.cs @AuditLog.cs
-
-
+@Course.cs @Exercise.cs @Subject.cs
