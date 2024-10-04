@@ -1,9 +1,8 @@
-@model int
+@model (int? CourseId, int? CurrentSubjectId, int? CurrentExerciseId)
 
 <h2 class="text-xl font-bold mb-4 text-primary">Course Outline</h2>
 <div id="tableOfContents" class="space-y-2">
   @for (int i = 0; i < 5; i++)
-
   {
     <div class="animate-pulse flex space-x-4">
       <div class="flex-1 space-y-2 py-1">
@@ -17,7 +16,11 @@
 <script>
   (async function loadTableOfContents() {
     try {
-      const response = await fetch(`/api/Courses/@Model`);
+      const courseId = @(Model.CourseId.HasValue ? Model.CourseId.Value.ToString() : "null");
+      if (courseId === null) {
+        throw new Error('Course ID is not provided');
+      }
+      const response = await fetch(`/api/Courses/${courseId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch course data');
       }
@@ -25,10 +28,16 @@
       const tableOfContents = document.getElementById('tableOfContents');
       tableOfContents.innerHTML = '';
 
+      const currentSubjectId = @(Model.CurrentSubjectId.HasValue ? Model.CurrentSubjectId.Value.ToString() : "null");
+      const currentExerciseId = @(Model.CurrentExerciseId.HasValue ? Model.CurrentExerciseId.Value.ToString() : "null");
+
       course.subjects.forEach(subject => {
         const subjectLink = document.createElement('a');
         subjectLink.href = `/Subject/${subject.id}`;
         subjectLink.className = 'block hover:bg-gray-100 p-2 rounded';
+        if (currentSubjectId !== null && subject.id === parseInt(currentSubjectId)) {
+          subjectLink.className += ' font-bold';
+        }
         subjectLink.textContent = subject.headline;
         tableOfContents.appendChild(subjectLink);
 
@@ -40,6 +49,9 @@
             const exerciseLink = document.createElement('a');
             exerciseLink.href = `/Exercise/${exercise.id}`;
             exerciseLink.className = 'text-sm text-gray-600 hover:text-gray-900';
+            if (currentExerciseId !== null && exercise.id === parseInt(currentExerciseId)) {
+              exerciseLink.className += ' font-bold';
+            }
             exerciseLink.textContent = exercise.headline;
             exerciseItem.appendChild(exerciseLink);
             exerciseList.appendChild(exerciseItem);
