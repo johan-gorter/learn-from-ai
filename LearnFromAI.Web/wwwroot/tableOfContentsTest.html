@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table of Contents Module Tests</title>
+    <!-- Include Jasmine files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/boot.min.js"></script>
+</head>
+<body>
+    <!-- Elements for testing -->
+    <div id="tableOfContents"></div>
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+
+    <!-- Include the module to be tested -->
+    <script type="module">
+        import { tableOfContentsModule } from './js/tableOfContentsModule.js';
+        window.tableOfContentsModule = tableOfContentsModule;
+    </script>
+
+    <!-- Test suite -->
+    <script>
+        describe('Table of Contents Module', () => {
+            let mockCourse;
+
+            beforeEach(() => {
+                mockCourse = {
+                    subjects: [
+                        {
+                            id: 1,
+                            headline: 'Subject 1',
+                            exercises: [
+                                { id: 101, headline: 'Exercise 1.1' },
+                                { id: 102, headline: 'Exercise 1.2' }
+                            ]
+                        },
+                        {
+                            id: 2,
+                            headline: 'Subject 2',
+                            exercises: [
+                                { id: 201, headline: 'Exercise 2.1' }
+                            ]
+                        }
+                    ]
+                };
+            });
+
+            it('should create a subject link', () => {
+                const subject = { id: 1, headline: 'Test Subject' };
+                const link = tableOfContentsModule.createSubjectLink(subject, null);
+                expect(link.tagName).toBe('A');
+                expect(link.href).toContain('/Subject/1');
+                expect(link.textContent).toBe('Test Subject');
+            });
+
+            it('should create an exercise list', () => {
+                const exercises = [
+                    { id: 1, headline: 'Exercise 1' },
+                    { id: 2, headline: 'Exercise 2' }
+                ];
+                const list = tableOfContentsModule.createExerciseList(exercises, null);
+                expect(list.tagName).toBe('UL');
+                expect(list.children.length).toBe(2);
+            });
+
+            it('should build a table of contents', () => {
+                const { tableOfContentsElement, allItems, currentIndex } = tableOfContentsModule.buildTableOfContents(mockCourse, null, null);
+                expect(tableOfContentsElement.children.length).toBe(4); // 2 subjects + 2 exercise lists
+                expect(allItems.length).toBe(5); // 2 subjects + 3 exercises
+                expect(currentIndex).toBe(-1);
+            });
+
+            it('should setup navigation buttons', () => {
+                const prevButton = document.getElementById('prevButton');
+                const nextButton = document.getElementById('nextButton');
+                const allItems = [
+                    { type: 'subject', id: 1 },
+                    { type: 'exercise', id: 101 },
+                    { type: 'exercise', id: 102 }
+                ];
+
+                tableOfContentsModule.setupNavigationButtons(prevButton, nextButton, allItems, 1);
+
+                expect(prevButton.classList.contains('invisible')).toBe(false);
+                expect(nextButton.classList.contains('invisible')).toBe(false);
+            });
+
+            it('should fetch course data', async () => {
+                spyOn(window, 'fetch').and.returnValue(Promise.resolve({
+                    ok: true,
+                    json: () => Promise.resolve(mockCourse)
+                }));
+
+                const result = await tableOfContentsModule.fetchCourseData(1);
+                expect(result).toEqual(mockCourse);
+            });
+        });
+    </script>
+</body>
+</html>
