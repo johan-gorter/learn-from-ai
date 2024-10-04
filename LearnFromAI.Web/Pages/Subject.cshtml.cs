@@ -1,5 +1,5 @@
-using LearnFromAI.Models;
-using LearnFromAI.Services;
+using LearnFromAI.Web.Models;
+using LearnFromAI.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
