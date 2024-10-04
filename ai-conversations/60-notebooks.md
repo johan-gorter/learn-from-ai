@@ -25,7 +25,7 @@ You maintain the following services:
 ## Frontend developer for courses
 
 You write the dotnet 8 web application frontend using the technologies in @_Layout.cshtml
-You prefer using a href instead of asp-page.
+You prefer using a href instead of asp-page. Urls are formatted like /Exercise/1 by using `@page "{id:int}"`.
 You can use the @ICourseService.cs that is available through dependency injection
 
 The data is modelled as follows:
