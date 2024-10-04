@@ -1,60 +1,41 @@
 @page "{id:int}"
 @model LearnFromAI.Web.Pages.SubjectModel
 @{
-    ViewData["Title"] = Model.Subject.Headline;
+  ViewData["Title"] = Model.Subject.Headline;
 }
 
 <div class="flex flex-col md:flex-row gap-8">
-    <aside class="md:w-1/4 bg-white p-4 rounded shadow">
-        <h2 class="text-xl font-bold mb-4 text-primary">Course Outline</h2>
-        <div class="space-y-2">
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="animate-pulse flex space-x-4">
-                    <div class="flex-1 space-y-2 py-1">
-                        <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-                        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-                    </div>
-                </div>
-            }
-        </div>
-    </aside>
+  <aside class="md:w-1/4 bg-white p-4 rounded shadow">
+    <partial name="_TableOfContents" model="@Model.Subject.CourseId" />
+  </aside>
 
-    <section class="md:w-3/4 space-y-8">
-        <div class="bg-white p-6 rounded shadow">
-            <div class="prose prose-sm max-w-none">
-                @Html.Raw(Model.Subject.Content)
-            </div>
-        </div>
+  <section class="md:w-3/4 space-y-8">
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-bold mb-4 text-primary">@Model.Subject.Headline</h2>
+      <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none">
+        @Html.Raw(Model.Subject.Content)
+      </div>
+    </div>
 
-        <div class="bg-white p-6 rounded shadow">
-            <h3 class="text-xl font-bold mb-4 text-primary">Exercises</h3>
-            <ul class="space-y-2">
-                @foreach (var exercise in Model.Subject.Exercises.OrderBy(e => e.Order))
-                {
-                    <li>
-                        <a href="/Exercise/@exercise.Id" class="text-blue-600 hover:underline">@exercise.Headline</a>
-                    </li>
-                }
-            </ul>
-        </div>
-    </section>
+    <div class="bg-white p-6 rounded shadow">
+      <h3 class="text-xl font-bold mb-4 text-primary">Exercises</h3>
+      <ul class="space-y-2">
+        @foreach (var exercise in Model.Subject.Exercises.OrderBy(e => e.Order))
+        {
+          <li>
+            <a href="/Exercise/@exercise.Id" class="text-blue-600 hover:underline">@exercise.Headline</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
 </div>
 
 <div class="mt-8 flex justify-between">
-    <a href="/Course/@Model.Subject.CourseId" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Back to Course</a>
-    @if (Model.Subject.Exercises.Any())
-    {
-        <a href="/Exercise/@Model.Subject.Exercises.OrderBy(e => e.Order).First().Id" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Start First Exercise</a>
-    }
+  <a href="/Course/@Model.Subject.CourseId" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Back to Course</a>
+  @if (Model.Subject.Exercises.Any())
+  {
+    <a href="/Exercise/@Model.Subject.Exercises.OrderBy(e => e.Order).First().Id"
+      class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white">Start First Exercise</a>
+  }
 </div>
-
-<style>
-    .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-        color: #4a6da7; /* primary color */
-    }
-    .prose {
-        font-size: 0.875rem; /* 14px */
-        line-height: 1.5rem; /* 24px */
-    }
-</style>
