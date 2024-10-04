@@ -31,15 +31,24 @@
       const currentSubjectId = @(Model.CurrentSubjectId.HasValue ? Model.CurrentSubjectId.Value.ToString() : "null");
       const currentExerciseId = @(Model.CurrentExerciseId.HasValue ? Model.CurrentExerciseId.Value.ToString() : "null");
 
+      const prevButton = document.getElementById('prevButton');
+      const nextButton = document.getElementById('nextButton');
+
+      let allItems = [];
+      let currentIndex = -1;
+
       course.subjects.forEach(subject => {
         const subjectLink = document.createElement('a');
         subjectLink.href = `/Subject/${subject.id}`;
         subjectLink.className = 'block hover:bg-gray-100 p-2 rounded';
         if (currentSubjectId !== null && subject.id === parseInt(currentSubjectId)) {
           subjectLink.className += ' font-bold';
+          currentIndex = allItems.length;
         }
         subjectLink.textContent = subject.headline;
         tableOfContents.appendChild(subjectLink);
+
+        allItems.push({ type: 'subject', id: subject.id });
 
         if (subject.exercises && subject.exercises.length > 0) {
           const exerciseList = document.createElement('ul');
@@ -51,14 +60,39 @@
             exerciseLink.className = 'text-sm text-gray-600 hover:text-gray-900';
             if (currentExerciseId !== null && exercise.id === parseInt(currentExerciseId)) {
               exerciseLink.className += ' font-bold';
+              currentIndex = allItems.length;
             }
             exerciseLink.textContent = exercise.headline;
             exerciseItem.appendChild(exerciseLink);
             exerciseList.appendChild(exerciseItem);
+
+            allItems.push({ type: 'exercise', id: exercise.id });
           });
           tableOfContents.appendChild(exerciseList);
         }
       });
+
+      // Set up navigation buttons
+      if (currentIndex > 0) {
+        const prevItem = allItems[currentIndex - 1];
+        prevButton.onclick = () => {
+          window.location.href = prevItem.type === 'subject' ? `/Subject/${prevItem.id}` : `/Exercise/${prevItem.id}`;
+        };
+        prevButton.classList.remove('invisible');
+      } else {
+        prevButton.classList.add('invisible');
+      }
+
+      if (currentIndex < allItems.length - 1) {
+        const nextItem = allItems[currentIndex + 1];
+        nextButton.onclick = () => {
+          window.location.href = nextItem.type === 'subject' ? `/Subject/${nextItem.id}` : `/Exercise/${nextItem.id}`;
+        };
+        nextButton.classList.remove('invisible');
+      } else {
+        nextButton.classList.add('invisible');
+      }
+
     } catch (error) {
       console.error('Error loading table of contents:', error);
     }
