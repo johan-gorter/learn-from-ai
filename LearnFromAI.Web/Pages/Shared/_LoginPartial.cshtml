@@ -1,26 +1,27 @@
 @using Microsoft.AspNetCore.Identity
+
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
+<ul class="flex items-center space-x-4">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a href="/Identity/Account/Manage" class="font-semibold text-white hover:underline">@User.Identity?.Name</a>
+    </li>
+    <li>
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
+            <button type="submit" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li>
+        <a class="text-white hover:underline" href="/Identity/Account/Register">Register</a>
+    </li>
+    <li>
+        <a class="bg-secondary hover:bg-red-600 px-4 py-2 rounded" href="/Identity/Account/Login">Login</a>
+    </li>
+}
 </ul>
