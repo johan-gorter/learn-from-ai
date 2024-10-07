@@ -1,0 +1,15 @@
+@page "{id:int}"
+@model LearnFromAI.Web.Pages.CourseModel
+@{
+    ViewData["Title"] = "Course";
+}
+
+<div class="container mx-auto mt-8">
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error:</strong>
+            <span class="block sm:inline">@Model.ErrorMessage</span>
+        </div>
+    }
+</div>
