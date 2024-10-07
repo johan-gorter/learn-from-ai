@@ -1,0 +1,44 @@
+@page "{id:int}"
+@model LearnFromAI.Web.Pages.SubjectModel
+@{
+    ViewData["Title"] = Model.Subject?.Headline ?? "Subject";
+}
+
+<div class="flex flex-col md:flex-row gap-8">
+    <aside class="md:w-1/4 bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-bold mb-4 text-primary">Course Outline</h2>
+        <div class="space-y-2">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div class="animate-pulse flex space-x-4">
+                    <div class="flex-1 space-y-2 py-1">
+                        <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </aside>
+
+    <section class="md:w-3/4 space-y-8">
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Error:</strong>
+                <span class="block sm:inline">@Model.ErrorMessage</span>
+            </div>
+        }
+        else
+        {
+            <div class="bg-white p-6 rounded shadow">
+                <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none prose-headings:text-primary">
+                    @Html.Raw(Model.Subject.Content)
+                </div>
+            </div>
+        }
+    </section>
+</div>
+
+<div class="mt-8 flex justify-between">
+    <a href="#" class="bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white" onclick="history.back(); return false;">Back</a>
+</div>
