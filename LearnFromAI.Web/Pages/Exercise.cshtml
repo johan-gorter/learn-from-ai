@@ -44,7 +44,10 @@
     <div id="hintContent" class="mb-4 prose prose-sm max-w-none">
       @Html.Raw(htmlDoc.DocumentNode.SelectSingleNode("//dialog")?.InnerHtml)
     </div>
-    <button id="closeHintBtn" class="mt-4 bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white font-semibold">Close</button>
+    <div class="flex justify-between">
+      <button id="closeHintBtn" class="mt-4 bg-secondary hover:bg-red-600 px-4 py-2 rounded text-white font-semibold">Close</button>
+      <button id="revealSolutionBtn" class="mt-4 bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold">Reveal Solution</button>
+    </div>
   </div>
 </div>
 
@@ -53,6 +56,7 @@
     const hintBtn = document.getElementById('hintBtn');
     const hintDialog = document.getElementById('hintDialog');
     const closeHintBtn = document.getElementById('closeHintBtn');
+    const revealSolutionBtn = document.getElementById('revealSolutionBtn');
     const runBtn = document.getElementById('runBtn');
     const resetBtn = document.getElementById('resetBtn');
     const codeEditor = document.getElementById('codeEditor');
@@ -69,6 +73,11 @@
 
     closeHintBtn.addEventListener('click', () => {
       hintDialog.classList.add('hidden');
+    });
+
+    revealSolutionBtn.addEventListener('click', () => {
+      hintDialog.classList.add('hidden');
+      codeEditor.value = solution;
     });
 
     runBtn.addEventListener('click', () => {
