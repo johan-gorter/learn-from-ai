@@ -1,7 +1,7 @@
 @model (int CourseId, int? CurrentSubjectId, int? CurrentExerciseId)
 
 <h2 class="text-xl font-bold mb-4 text-primary">Course Outline</h2>
-<div class="space-y-2">
+<div id="courseOutline" class="space-y-2">
     @for (int i = 0; i < 5; i++)
     {
         <div class="animate-pulse flex space-x-4">
@@ -12,3 +12,62 @@
         </div>
     }
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const courseId = @Model.CourseId;
+        const currentSubjectId = @(Model.CurrentSubjectId ?? -1);
+        const currentExerciseId = @(Model.CurrentExerciseId ?? -1);
+
+        fetch(`/api/Courses/${courseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(course => {
+                const outlineHtml = renderCourseOutline(course, currentSubjectId, currentExerciseId);
+                document.getElementById('courseOutline').innerHTML = outlineHtml;
+            })
+            .catch(error => {
+                console.error('Error fetching course outline:', error);
+                document.getElementById('courseOutline').innerHTML = '<p class="text-red-500">Error loading course outline. Please try again later.</p>';
+            });
+    });
+
+    function renderCourseOutline(course, currentSubjectId, currentExerciseId) {
+        let html = '<ul class="space-y-2">';
+        course.subjects.forEach(subject => {
+            const isActiveSubject = subject.id === currentSubjectId;
+            html += `
+                <li>
+                    <a href="/Subject/${subject.id}" class="${isActiveSubject ? 'font-bold' : ''} hover:text-primary">
+                        ${subject.headline}
+                    </a>
+                    ${renderExercises(subject.exercises, currentExerciseId, isActiveSubject)}
+                </li>
+            `;
+        });
+        html += '</ul>';
+        return html;
+    }
+
+    function renderExercises(exercises, currentExerciseId, isActiveSubject) {
+        if (!exercises || exercises.length === 0) return '';
+
+        let html = '<ul class="ml-4 mt-1 space-y-1">';
+        exercises.forEach(exercise => {
+            const isActiveExercise = exercise.id === currentExerciseId;
+            html += `
+                <li>
+                    <a href="/Exercise/${exercise.id}" class="${isActiveExercise ? 'font-bold' : ''} hover:text-primary">
+                        ${exercise.headline}
+                    </a>
+                </li>
+            `;
+        });
+        html += '</ul>';
+        return html;
+    }
+</script>
