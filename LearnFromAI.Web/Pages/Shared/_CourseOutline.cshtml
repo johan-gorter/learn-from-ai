@@ -29,6 +29,7 @@
             .then(course => {
                 const outlineHtml = renderCourseOutline(course, currentSubjectId, currentExerciseId);
                 document.getElementById('courseOutline').innerHTML = outlineHtml;
+                setupNavigation(course, currentSubjectId, currentExerciseId);
             })
             .catch(error => {
                 console.error('Error fetching course outline:', error);
@@ -69,5 +70,39 @@
         });
         html += '</ul>';
         return html;
+    }
+
+    function setupNavigation(course, currentSubjectId, currentExerciseId) {
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        let currentIndex = -1;
+        let items = [];
+
+        // Flatten the course structure into a single array of navigable items
+        course.subjects.forEach(subject => {
+            items.push({ type: 'subject', id: subject.id });
+            subject.exercises.forEach(exercise => {
+                items.push({ type: 'exercise', id: exercise.id });
+            });
+        });
+
+        // Find the current position
+        currentIndex = items.findIndex(item =>
+            (item.type === 'subject' && item.id === currentSubjectId) ||
+            (item.type === 'exercise' && item.id === currentExerciseId)
+        );
+
+        if (currentIndex > 0) {
+            const prevItem = items[currentIndex - 1];
+            prevButton.href = prevItem.type === 'subject' ? `/Subject/${prevItem.id}` : `/Exercise/${prevItem.id}`;
+            prevButton.classList.remove('invisible');
+        }
+
+        if (currentIndex < items.length - 1) {
+            const nextItem = items[currentIndex + 1];
+            nextButton.href = nextItem.type === 'subject' ? `/Subject/${nextItem.id}` : `/Exercise/${nextItem.id}`;
+            nextButton.classList.remove('invisible');
+        }
     }
 </script>
