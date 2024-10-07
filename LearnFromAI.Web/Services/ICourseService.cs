@@ -6,7 +6,7 @@ namespace LearnFromAI.Web.Services
 {
   public interface ICourseService
   {
-    Task<IEnumerable<Course>> GetCoursesAsync(string? searchTerm = null);
+    Task<IEnumerable<Course>> GetAllCoursesAsync(string? searchTerm = null);
 
     Task<Course> GetCourseByIdAsync(int id);
 

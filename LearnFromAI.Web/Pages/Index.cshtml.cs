@@ -22,7 +22,7 @@ namespace LearnFromAI.Web.Pages
 
     public async Task OnGetAsync()
     {
-      Courses = await _courseService.GetCoursesAsync();
+      Courses = await _courseService.GetAllCoursesAsync();
     }
 
     public async Task<IActionResult> OnGetStartCourseAsync(int id)

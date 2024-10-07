@@ -16,7 +16,7 @@ namespace LearnFromAI.Web.Services
       _context = context;
     }
 
-    public async Task<IEnumerable<Course>> GetCoursesAsync(string? searchTerm = null)
+    public async Task<IEnumerable<Course>> GetAllCoursesAsync(string? searchTerm = null)
     {
       IQueryable<Course> query = _context.Courses;
 
