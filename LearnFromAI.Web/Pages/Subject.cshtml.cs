@@ -21,7 +21,6 @@ namespace LearnFromAI.Web.Pages
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Subject = await _courseService.GetSubjectByIdAsync(id);
-
             if (Subject == null)
             {
                 ErrorMessage = "Subject not found.";
