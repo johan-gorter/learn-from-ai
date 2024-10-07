@@ -1,27 +1,27 @@
-using System.Threading.Tasks;
 using LearnFromAI.Web.Models;
 using LearnFromAI.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace LearnFromAI.Web.Pages
 {
-    public class ExerciseModel : PageModel
+    public class CourseModel : PageModel
     {
         private readonly ICourseService _courseService;
 
-        public ExerciseModel(ICourseService courseService)
+        public CourseModel(ICourseService courseService)
         {
             _courseService = courseService;
         }
 
-        public Exercise Exercise { get; set; }
+        public Course Course { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Exercise = await _courseService.GetExerciseWithSubjectAndCourseAsync(id);
+            Course = await _courseService.GetCourseByIdAsync(id);
 
-            if (Exercise == null)
+            if (Course == null)
             {
                 return NotFound();
             }

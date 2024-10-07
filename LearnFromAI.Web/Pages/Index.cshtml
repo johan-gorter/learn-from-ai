@@ -1,27 +1,19 @@
 ﻿@page
-@model LearnFromAI.Web.Pages.IndexModel
+@model IndexModel
 @{
-  ViewData["Title"] = "Learn From AI - Courses";
+    ViewData["Title"] = "Home";
 }
 
-<div class="container">
-  <h1 class="display-4 text-center mb-4">Welcome to Learn From AI</h1>
-  <p class="lead text-center mb-5">Explore our courses and start learning today!</p>
-
-  <div class="row">
-    @foreach (var course in Model.Courses)
-    {
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">@course.Title</h5>
-            <p class="card-text">@course.Content</p>
-          </div>
-          <div class="card-footer">
-            <a asp-page-handler="StartCourse" asp-route-id="@course.Id" class="btn btn-primary">Start Course</a>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
+<div class="space-y-8">
+    <h2 class="text-3xl font-bold text-primary">Available Courses</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @foreach (var course in Model.Courses)
+        {
+            <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-bold mb-4 text-primary">@course.Title</h3>
+                <p class="mb-4 text-gray-600">@course.Content.Substring(0, Math.Min(100, course.Content.Length))...</p>
+                <a href="/Course/@course.Id" class="bg-secondary hover:bg-red-600 text-white px-4 py-2 rounded inline-block">Start Course</a>
+            </div>
+        }
+    </div>
 </div>
